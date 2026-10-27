@@ -173,8 +173,11 @@ function updateTimes(){
 }
 clinic.addEventListener("change",updateDates);dateSel.addEventListener("change",updateTimes);
 document.getElementById("reserveBtn").addEventListener("click",()=>{
- if(!clinic.value||!dateSel.value||!timeSel.value){alert("開催院・日程・開始時間を選択してください。");return;}
-alert(`選択内容：${clinic.value}／${fmt(dateSel.value)}（${dow(dateSel.value)}）／${timeSel.value}開始\n\nこれはLP試作版のため、まだ予約は確定していません。予約システムのURLを設定すると受付を開始できます。`);
+ if(!clinic.value||!dateSel.value||!timeSel.value){
+  alert("開催院・日程・開始時間を選択してください。");
+  return;
+ }
+ alert(`選択内容：${clinic.value}／${fmt(dateSel.value)}（${dow(dateSel.value)}）／${timeSel.value}開始\n\nこれはLP試作版のため、まだ予約は確定していません。予約システムのURLを設定すると受付を開始できます。`);
 });
 </script>
 </body>
