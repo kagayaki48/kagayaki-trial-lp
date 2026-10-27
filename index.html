@@ -29,7 +29,7 @@ footer{background:var(--brown);color:#fff;padding:30px 0;text-align:center;font-
 <body>
 <header class="topbar">
   <div class="wrap topbar-inner">
-<img class="logo" src="logo.jpg" alt="KAGAYAKI かがやき">
+    <img class="logo" src="images/logo.jpg" alt="KAGAYAKI かがやき">
     <div class="top-note">地域のみなさまへ<br><strong>無料体験会 開催！</strong></div>
   </div>
 </header>
@@ -44,7 +44,7 @@ footer{background:var(--brown);color:#fff;padding:30px 0;text-align:center;font-
       <a class="cta" href="#events">開催院・日程を確認する ↓</a>
     </div>
     <div class="hero-photo">
-   <img src="treatment.jpg" alt="かがやき鍼灸整骨院で施術を行うスタッフ">
+      <img src="images/treatment.jpg" alt="かがやき鍼灸整骨院で施術を行うスタッフ">
       <div class="photo-label">施術体験 約30分／無料</div>
     </div>
   </div>
@@ -66,11 +66,11 @@ footer{background:var(--brown);color:#fff;padding:30px 0;text-align:center;font-
     <p class="section-lead">お身体の状態を確認しながら、施術内容をわかりやすくご案内します。</p>
     <div class="menu-grid">
       <article class="menu-card">
- <img src="consultation.png" alt="スタッフが骨格模型を使って身体の状態を説明している様子">
+        <img src="images/consultation.png" alt="スタッフが骨格模型を使って身体の状態を説明している様子">
         <div class="menu-copy"><h3>骨格矯正</h3><p>姿勢や身体のバランスを確認し、お悩みに合わせてご案内します。</p></div>
       </article>
       <article class="menu-card">
-<img src="deep-muscle-massage.jpg" alt="背中に手技を行う深層筋マッサージの施術写真">
+        <img src="images/deep-muscle-massage.jpg" alt="背中に手技を行う深層筋マッサージの施術写真">
         <div class="menu-copy"><h3>深層筋マッサージ</h3><p>筋肉の状態を確認しながら、手技による施術を体験いただけます。</p></div>
       </article>
     </div>
@@ -90,17 +90,9 @@ footer{background:var(--brown);color:#fff;padding:30px 0;text-align:center;font-
 <section class="section tint" id="reserve">
   <div class="wrap">
     <h2 class="section-title">無料体験会のお申し込み</h2>
-    <p class="section-lead">ご希望の開催日を選んでお進みください。</p>
-    <div class="booking-panel">
-      <h3>ご希望の院・日程を選択</h3>
-      <div class="booking-grid">
-        <div class="field"><label for="clinic">開催院</label><select id="clinic"><option value="">開催院を選択</option></select></div>
-        <div class="field"><label for="eventDate">開催日</label><select id="eventDate"><option value="">日程を選択</option></select></div>
-        <div class="field full"><label for="time">ご希望の開始時間</label><select id="time"><option value="">開催院・日程を先に選択</option></select></div>
-      </div>
-      <button class="cta" type="button" id="reserveBtn">この内容で予約に進む</button>
-      <p class="fineprint">※現在はLPの試作版です。予約システム未接続のため、この操作では予約は確定しません。</p>
-      <div class="notice">予約受付を開始するには、実際の予約フォーム（空き枠管理ができるGoogleカレンダー予約枠など）のURLを設定してください。Googleフォーム単体では、予約済み枠の自動非表示や二重予約防止は標準ではできません。</div>
+    <p class="section-lead">ご予約は、下のボタンからGoogleフォームへお進みください。</p>
+    <div class="booking-panel" style="text-align:center">
+      <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfYKWMbhlOuL-Jscuc7YlDZxhUsLRymGfPvvFGQADbzrxWabQ/viewform" target="_blank" rel="noopener noreferrer" style="display:block;max-width:420px;margin:0 auto;padding:18px 26px;font-size:20px">ご予約はこちら</a>
     </div>
   </div>
 </section>
@@ -117,7 +109,7 @@ footer{background:var(--brown);color:#fff;padding:30px 0;text-align:center;font-
 <div class="sticky-space"></div>
 </main>
 <footer>
-<img class="footer-logo" src="logo.jpg" alt="KAGAYAKI かがやき鍼灸整骨院">
+  <img class="footer-logo" src="images/logo.jpg" alt="KAGAYAKI かがやき鍼灸整骨院">
   <div>かがやき鍼灸整骨院</div>
   <div>仕事を通じて人間性を高め輝き、人々の健康と美と笑顔に貢献する</div>
   <p>※開催内容・時間は変更になる場合があります。</p>
@@ -153,30 +145,6 @@ events.forEach(e=>{
     const timeEl=el.querySelector(".time");
     if(timeEl) timeEl.textContent="9:00〜16:00 ※おにクルにて開催";
   }
-});
-const clinic=document.getElementById("clinic"), dateSel=document.getElementById("eventDate"), timeSel=document.getElementById("time");
-[...new Set(events.map(e=>e.clinic))].sort((a,b)=>a.localeCompare(b,"ja")).forEach(c=>clinic.add(new Option(c,c)));
-function updateDates(){
- dateSel.innerHTML='<option value="">日程を選択</option>';timeSel.innerHTML='<option value="">日程を選択してください</option>';
- events.filter(e=>e.clinic===clinic.value).forEach(e=>dateSel.add(new Option(`${fmt(e.date)}（${dow(e.date)}）`,e.date)));
-}
-function updateTimes(){
- timeSel.innerHTML='<option value="">開始時間を選択</option>';
- if(!clinic.value||!dateSel.value)return;
- const specialIbaraki = clinic.value==="茨木市院" && dateSel.value==="2026-11-29";
-  const start=specialIbaraki?9:(dow(dateSel.value)==="土"?15:9);
-  const end=specialIbaraki?16:(dow(dateSel.value)==="土"?18:12);
- for(let h=start;h<=end;h++)for(let m=0;m<60;m+=30){
-  if(h===end&&m>0)continue;
-  timeSel.add(new Option(`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")} 開始`,`${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}`));
- }
-}
-clinic.addEventListener("change",updateDates);dateSel.addEventListener("change",updateTimes);
-document.getElementById("reserveBtn").addEventListener("click", () => {
-  window.open(
-    "https://docs.google.com/forms/d/e/1FAIpQLSfYKWMbhlOuL-Jscuc7YlDZxhUsLRymGfPvvFGQADbzrxWabQ/viewform?usp=dialog",
-    "_blank"
-  );
 });
 </script>
 </body>
