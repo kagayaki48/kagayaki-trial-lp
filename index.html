@@ -174,8 +174,8 @@ function updateTimes(){
 clinic.addEventListener("change",updateDates);dateSel.addEventListener("change",updateTimes);
 document.getElementById("reserveBtn").addEventListener("click",()=>{
  if(!clinic.value||!dateSel.value||!timeSel.value){alert("開催院・日程・開始時間を選択してください。");return;}
- alert(`選択内容：${clinic.value}／${fmt(dateSel.value)}（${dow(dateSel.value)}）／${timeSel.value}開始\n\nこれはLP試作版のため、まだ予約は確定していません。予約システムのURLを設定すると受付を開始できます。`);
-});
+const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfYKWMbhlOuL-Jscuc7YlDZxhUsLRymGfPvvFGQADbzrxWabQ/viewform?usp=pp_url&entry.2040878850=%E5%8D%81%E4%B8%89%E9%99%A2&entry.223617264=11/22%EF%BC%88%E6%97%A5%EF%BC%89%E5%8D%81%E4%B8%89%E9%99%A2+10:30%E3%80%9C11:00";
+window.open(formUrl, "_blank");
 </script>
 </body>
 </html>
