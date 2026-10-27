@@ -173,11 +173,35 @@ function updateTimes(){
 }
 clinic.addEventListener("change",updateDates);dateSel.addEventListener("change",updateTimes);
 document.getElementById("reserveBtn").addEventListener("click",()=>{
- if(!clinic.value||!dateSel.value||!timeSel.value){
-  alert("開催院・日程・開始時間を選択してください。");
-  return;
- }
- alert(`選択内容：${clinic.value}／${fmt(dateSel.value)}（${dow(dateSel.value)}）／${timeSel.value}開始\n\nこれはLP試作版のため、まだ予約は確定していません。予約システムのURLを設定すると受付を開始できます。`);
+  if(!clinic.value || !dateSel.value || !timeSel.value){
+    alert("開催院・日程・開始時間を選択してください。");
+    return;
+  }
+
+  if(clinic.value !== "十三院"){
+    alert("現在は十三院のみ接続テスト中です。");
+    return;
+  }
+
+  const [hour, minute] = timeSel.value.split(":").map(Number);
+  const endMinutes = hour * 60 + minute + 30;
+  const endHour = String(Math.floor(endMinutes / 60)).padStart(2, "0");
+  const endMinute = String(endMinutes % 60).padStart(2, "0");
+
+  const date = new Date(dateSel.value + "T00:00:00");
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const weekday = ["日", "月", "火", "水", "木", "金", "土"][date.getDay()];
+  const start = `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+  const slot = `${month}/${day}（${weekday}）＋十三院 ${start}〜${endHour}:${endMinute}`;
+
+  const params = new URLSearchParams();
+  params.set("usp", "pp_url");
+  params.set("entry.2040878850", "十三院");
+  params.set("entry.223617264", slot);
+
+  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfYKWMbhlOuL-Jscuc7YlDZxhUsLRymGfPvvFGQADbzrxWabQ/viewform?" + params.toString();
+  window.open(formUrl, "_blank");
 });
 </script>
 </body>
