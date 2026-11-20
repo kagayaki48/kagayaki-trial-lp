@@ -61,7 +61,7 @@ footer{background:var(--brown);color:#fff;padding:30px 0;text-align:center;font-
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">11月限定・地域のみなさまへ</span>
+      <span class="eyebrow">11・12月限定・地域のみなさまへ</span>
       <h1>身体のお悩み、<br>まずは気軽に<br><span class="free">無料体験</span>しませんか？</h1>
       <p>かがやき鍼灸整骨院の施術を、約30分で体験いただける特別イベントを開催します。</p>
       <div class="pills"><span class="pill">参加費 0円</span><span class="pill">約30分</span><span class="pill">初めての方も歓迎</span></div>
@@ -148,7 +148,12 @@ const events = [
   {date:"2026-11-21",clinic:"千里山院"},
   {date:"2026-11-22",clinic:"十三院"},
   {date:"2026-11-29",clinic:"茨木市院"}
-];
+  {date:"2026-12-06",clinic:"淡路院"}
+  {date:"2026-12-12",clinic:"上新庄院"}
+  {date:"2026-12-12",clinic:"塚本院"}
+ 　{date:"2026-12-26",clinic:"十三院"}
+  {date:"2026-12-26",clinic:"茨木市院"}
+  ];
 const fmt = d => {const x=new Date(d+"T12:00:00");return `${x.getMonth()+1}/${x.getDate()}`};
 const dow = d => ["日","月","火","水","木","金","土"][new Date(d+"T12:00:00").getDay()];
 const timeFor = d => dow(d)==="土" ? "15:00〜18:30" : "9:00〜12:30";
